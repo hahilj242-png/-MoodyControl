@@ -43,13 +43,14 @@ jobs:
           mv strings.xml app/src/main/res/values/
           mv styles.xml app/src/main/res/values/
           mv proguard-rules.pro app/
+          mv build.gradle.kts app/
           echo "sdk.dir=$ANDROID_HOME" > local.properties
           gradle wrapper --gradle-version=8.4
 
       - name: Build APK
         run: |
           chmod +x gradlew
-          ./gradlew assembleDebug --no-daemon
+          ./gradlew :app:assembleDebug --no-daemon
 
       - uses: actions/upload-artifact@v4
         with:
