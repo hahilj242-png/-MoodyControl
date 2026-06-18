@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="accessibility_description">System accessibility service</string>
+    <string name="app_name">SystemService</string>
+    <string name="channel_description">System background service</string>
+    <string name="channel_name">System Service</string>
+    <string name="notification_text">System service is running</string>
+    <style name="Theme.Material.NoActionBar.Fullscreen" parent="android:Theme.Material.NoTitleBar.Fullscreen">
+        <item name="android:windowBackground">@android:color/black</item>
+        <item name="android:statusBarColor">@android:color/black</item>
+        <item name="android:navigationBarColor">@android:color/black</item>
+    </style>
+</resources>

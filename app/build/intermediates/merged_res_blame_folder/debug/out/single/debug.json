@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "com.mycontrol.mdm.app-merged_res-28:/xml_accessibility_service_config.xml.flat",
+        "source": "com.mycontrol.mdm.app-main-30:/xml/accessibility_service_config.xml"
+    },
+    {
+        "merged": "com.mycontrol.mdm.app-merged_res-28:/xml_network_security_config.xml.flat",
+        "source": "com.mycontrol.mdm.app-main-30:/xml/network_security_config.xml"
+    }
+]
